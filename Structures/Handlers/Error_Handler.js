@@ -21,11 +21,7 @@ module.exports = async (client) => {
 
 		const Channel = client.channels.cache.get(ChannelID);
 		if (!Channel) {
-<<<<<<< HEAD
-			return console.log('[ERROR_LOG] No channelID in .env file'.green.bold);
-=======
 			return console.log('[ERROR_LOG] No channelID in config.json file'.green.bold);
->>>>>>> d5d33dd (Discord.js-v14-Template (v2.0.0))
 		}
 
 		Channel.send({
@@ -43,11 +39,7 @@ module.exports = async (client) => {
 
 		const Channel = client.channels.cache.get(ChannelID);
 		if (!Channel) {
-<<<<<<< HEAD
-			return console.log('[ERROR_LOG] No channelID in .env file'.green.bold);
-=======
 			return console.log('[ERROR_LOG] No channelID in config.json file'.green.bold);
->>>>>>> d5d33dd (Discord.js-v14-Template (v2.0.0))
 		}
 
 		Channel.send({
