@@ -1,48 +1,55 @@
-const client = require("../../index");
+// PLEASE READ README.md BEFORE MAKING ANY CHANGES. JOIN THE SUPPORT SERVER FROM SUPPORT.md
+
+const client = require('../../Structures/index');
 const {
-  EmbedBuilder,
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  ChannelType,
-} = require("discord.js");
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+	ButtonStyle,
+	ChannelType,
+} = require('discord.js');
 
-client.on("guildCreate", async (guild) => {
-  const { name, members, channels } = guild;
+module.exports = {
+	name: 'guildCreate',
 
-  let channelToSend;
+	async execute(guild) {
+		const { name, members, channels } = guild;
 
-  channels.cache.forEach((channel) => {
-    if (
-      channel.type === ChannelType.GuildText &&
-      !channelToSend &&
-      channel.permissionsFor(members.me).has("SendMessages")
-    )
-      channelToSend = channel;
-  });
+		let channelToSend;
 
-  if (!channelToSend) return;
+		channels.cache.forEach((channel) => {
+			if (
+				channel.type === ChannelType.GuildText &&
+				!channelToSend &&
+				channel.permissionsFor(members.me).has('SendMessages')
+			) {
+				channelToSend = channel;
+			}
+		});
 
-  const Embed = new EmbedBuilder()
-    .setColor(client.color)
-    .setAuthor({ name: name, iconURL: guild.iconURL() })
-    .setDescription(
-      `Ayo!, this is **${client.user.username}**! Thanks for inviting me to your server!`
-    )
-    .setFooter({ text: client.footer })
-    .setTimestamp();
+		if (!channelToSend) return;
 
-  const Row = new ActionRowBuilder().addComponents(
-    new ButtonBuilder()
-      .setStyle(ButtonStyle.Link)
-      .setURL("https://slang-ayo.up.railway.app/")
-      .setLabel("Dashboard"),
+		const Embed = new EmbedBuilder()
+			.setColor(client.color)
+			.setAuthor({ name: name, iconURL: guild.iconURL() })
+			.setDescription(
+				`Ayo!, this is **${client.user.username}**! Thanks for inviting me to your server!`,
+			)
+			.setFooter({ text: client.footer })
+			.setTimestamp();
 
-    new ButtonBuilder()
-      .setStyle(ButtonStyle.Link)
-      .setURL("https://dsc.gg/slang-ayo-support")
-      .setLabel("Support Server")
-  );
+		const Row = new ActionRowBuilder().addComponents(
+			new ButtonBuilder()
+				.setStyle(ButtonStyle.Link)
+				.setURL('https://slang-ayo.up.railway.app/')
+				.setLabel('Dashboard'),
 
-  channelToSend.send({ embeds: [Embed], components: [Row] });
-});
+			new ButtonBuilder()
+				.setStyle(ButtonStyle.Link)
+				.setURL('https://dsc.gg/slang-ayo-support')
+				.setLabel('Support Server'),
+		);
+
+		channelToSend.send({ embeds: [Embed], components: [Row] });
+	},
+};
