@@ -46,12 +46,8 @@ module.exports = (client) => {
 		}
 		// Deleting Slash Commands
 		else if (client.config.delete_commands === true) {
-			if (client.config.global === true) {
-				client.application.commands.set([]);
-			}
-			else if (client.config.global === false) {
-				client.guilds.cache.get(client.config.dev_guild_id)?.commands.set([]);
-			}
+			client.application.commands.set([]);
+			client.guilds.cache.get(client.config.dev_guild_id)?.commands.set([]);
 		}
 	});
 };

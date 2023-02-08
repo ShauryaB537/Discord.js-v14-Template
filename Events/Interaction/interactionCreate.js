@@ -57,7 +57,7 @@ module.exports = {
 			return;
 		}
 
-		// Check User Permissions (UserPerms)
+		// Check User Permissions (userPerms)
 		if (cmd.UserPerms && cmd.UserPerms.length !== 0) {
 			if (!member.permissions.has(cmd.UserPerms)) {
 				return interaction.reply({
@@ -77,7 +77,7 @@ module.exports = {
 			}
 		}
 
-		// Check Bot Permissions (BotPerms)
+		// Check Bot Permissions (botPerms)
 		if (cmd.BotPerms && cmd.BotPerms.length !== 0) {
 			if (!member.permissions.has(cmd.BotPerms)) {
 				return interaction.reply({

@@ -12,7 +12,7 @@ module.exports = {
 	description: 'Ping of the Bot',
 	cooldown: 3,
 	type: ApplicationCommandType.ChatInput,
-	BotPerms: [PermissionFlagsBits.SendMessages, PermissionFlagsBits.EmbedLinks],
+	botPerms: [PermissionFlagsBits.SendMessages, PermissionFlagsBits.EmbedLinks],
 	devOnly: false,
 	maintenance: false,
 
