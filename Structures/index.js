@@ -36,7 +36,10 @@ const client = new Client({
 module.exports = client;
 
 // Defining useful collection
-client.commands = new Collection();
+client.slashCommands = new Collection();
+client.messageCommands = new Collection();
+client.aliases = new Collection();
+client.categories = fs.readdirSync('./Commands/MessageCommands');
 client.context = new Collection();
 client.events = 0;
 client.config = require('./config.json');

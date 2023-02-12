@@ -39,7 +39,7 @@ module.exports = {
 		// Return if command does not exists
 		if (!interaction.isChatInputCommand()) return;
 
-		const cmd = client.commands.get(interaction.commandName);
+		const cmd = client.slashCommands.get(interaction.commandName);
 
 		// If command does not exists
 		if (!cmd) {

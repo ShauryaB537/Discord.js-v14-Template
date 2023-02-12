@@ -5,13 +5,13 @@ const { readdirSync } = require('fs');
 const { ApplicationCommandType } = require('discord.js');
 
 module.exports = (client) => {
-	readdirSync('./Commands').forEach((dir) => {
-		const commands = readdirSync(`./Commands/${dir}/`).filter((file) =>
+	readdirSync('./Commands/SlashCommands').forEach((dir) => {
+		const commands = readdirSync(`./Commands/SlashCommands/${dir}/`).filter((file) =>
 			file.endsWith('.js'),
 		);
 		for (const file of commands) {
 			// Defined the command files
-			const command = require(`../../Commands/${dir}/${file}`);
+			const command = require(`../../Commands/SlashCommands/${dir}/${file}`);
 			if (command.name) {
 				if (
 					[
@@ -22,7 +22,7 @@ module.exports = (client) => {
 					client.context.set(command.name, command);
 				}
 				else {
-					client.commands.set(command.name, command);
+					client.slashCommands.set(command.name, command);
 				}
 				CommandArray.push(command);
 			}

@@ -1,5 +1,6 @@
 // PLEASE READ README.md BEFORE MAKING ANY CHANGES. JOIN THE SUPPORT SERVER FROM SUPPORT.md
 
+const { ActivityType } = require('discord.js');
 const { dependencies } = require('../../package.json');
 const ver = dependencies['discord.js'];
 const mongoose = require('mongoose');
@@ -12,7 +13,10 @@ module.exports = {
 
 	async execute(c) {
 		// Setting the Presence
-		c.user.setPresence({ activities: [{ name: c.footer }], status: 'idle' });
+		c.user.setPresence({
+			activities: [{ name: c.footer, type: ActivityType.Streaming }],
+			status: 'idle',
+		});
 
 		// Bot Server Table
 		const table = new Table({
@@ -48,10 +52,26 @@ module.exports = {
 		);
 
 		console.log(
+			'Prefix: '.white.bold + `${c.config.prefix}`.yellow.bold,
+			'||'.white.bold,
+			'Message Commands:'.white.bold,
+			`${c.messageCommands.size}`.yellow.bold,
+		);
+
+		console.log(
 			'Prefix: '.white.bold + '/'.yellow.bold,
 			'||'.white.bold,
-			'Commands:'.white.bold,
-			`${c.commands.size}`.yellow.bold,
+			'Slash Commands:'.white.bold,
+			`${c.slashCommands.size}`.yellow.bold,
+		);
+
+		console.log(
+			'Total Commands = '.white.bold,
+			`${c.messageCommands.size}`.yellow,
+			'+'.white.bold,
+			`${c.slashCommands.size}`.yellow,
+			'='.white.bold,
+			`${c.messageCommands.size + c.slashCommands.size}`.yellow.bold,
 		);
 
 		console.log(
@@ -81,6 +101,7 @@ module.exports = {
 			`${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)}`.magenta.bold,
 			'MB'.white.bold,
 		);
+
 		console.log(
 			'RSS:'.white.bold,
 			`${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}`.magenta
@@ -136,5 +157,6 @@ module.exports = {
 			}
 			console.log(data);
 		});
+
 	},
 };

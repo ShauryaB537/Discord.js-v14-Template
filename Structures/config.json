@@ -1,4 +1,5 @@
 {
+  "prefix": "s!",
   "global": true,
   "delete_commands": false,
   "dev_guild_id": "1059888290104348792",
